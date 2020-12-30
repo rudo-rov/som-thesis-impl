@@ -63,11 +63,18 @@ binarySelector:
 argument: variable;
 
 /* Literals */
-literal: literalNumber | literalString;
+literal: literalNumber | literalString | literalArray | literalSymbol;
 
 literalNumber: MINUS? (INTEGER | DOUBLE);
 
 literalString: STRING;
+
+literalArray: POUND NEW_BLOCK literal* CLOSE_BLOCK;
+
+literalSymbol: POUND (STRING | selector);
+
+selector: binarySelector | keywordSelector | unarySelector;
+keywordSelector: KEYWORD+;
 
 KEYWORD: IDENTIFIER COLON;
 IDENTIFIER: [\p{Alpha}] [\p{Alpha}0-9_]*;
@@ -109,6 +116,7 @@ COLON: ':';
 COMMA: ',';
 RETURN: '^';
 PERIOD: '.';
+POUND: '#';
 
 OPEN_PAR: '(';
 CLOSE_PAR: ')';
