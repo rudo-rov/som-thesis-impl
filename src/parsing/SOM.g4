@@ -91,7 +91,7 @@ STRING:
     | '\\n'                     // New line
     | '\\\''                    // \'
     | '\\\\'                    // \\
-    | ~(SIMPLE_QUOTE | '\\') 
+    | ~('\'' | '\\') 
     )*
     SIMPLE_QUOTE
 ;
